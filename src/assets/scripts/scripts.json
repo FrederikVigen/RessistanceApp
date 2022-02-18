@@ -1,0 +1,20 @@
+{
+    "start": [
+        "Everyone close your eyes and extend your hand into a fist in front of you.",
+        "Spies open your eyes and look around to see your fellow spies.",
+        "Spies close your eyes."
+    ],
+    "commander": [
+        "All players should have their eyes closed and hands in a fist in front of them.",
+        "Spies - extend your thumb so the Commandor will know you.",
+        "Commander, open your eyes and see the Spies.",
+        "Spies - put your thumbs down and re-form your hand into a fist.",
+        "Commander, close your eyes"
+    ],
+    "end": [
+        "All players should have their eyes closed and hands in a fist in front of them.",
+        "Everyone open your eyes."
+    ]
+
+
+}
