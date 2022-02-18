@@ -3,10 +3,33 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@mui/material';
+import TextService from './Services/TextService';
+
+
+//#e01e27 - Rød
+//#550307 - mørke rød
+//#5c0c0d - Anden mørke rød
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#e01e27',
+    },
+    secondary: {
+      main: '#5c0c0d',
+    },
+  },
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <TextService>
+        <App />
+      </TextService>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
