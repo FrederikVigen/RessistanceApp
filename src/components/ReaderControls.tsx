@@ -1,6 +1,8 @@
 import { Box, Button, FormControlLabel, Slider, Stack, Typography } from '@mui/material'
 import React from 'react'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
+import StopRoundedIcon from '@mui/icons-material/StopRounded';
 import { useReaderService } from '../Services/ReaderService';
 import { useTextService } from '../Services/TextService';
 
@@ -8,8 +10,20 @@ const ReaderControls = () => {
     const readerService = useReaderService()
     const textSerivice = useTextService()
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        readerService.readText([textSerivice.currentText[0]])
+    const handlePlayButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if(readerService.isPaused) {
+            readerService.resumeSpeech()
+        } else {
+            readerService.readText(textSerivice.currentText)
+        }
+    }
+
+    const handlePauseButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        readerService.pauseSpeech()
+    }
+    
+    const handleStopButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        readerService.stopSpeech()
     }
 
     const handleRateChange = (e : Event, value: number | number[], activeThumb: number) => readerService.setRate(value as number) 
@@ -17,9 +31,14 @@ const ReaderControls = () => {
 
     return (
         <Stack spacing={2} direction="column" justifyContent={"center"}>
-            <Button variant="contained" onClick={handleClick}>
-                <PlayArrowRoundedIcon />
+            <Stack direction="row" spacing={2}>
+            <Button sx={{flex:1}} variant="contained" onClick={readerService.isSpeaking ? handlePauseButtonClick : handlePlayButtonClick}>
+                {readerService.isSpeaking ? <PauseRoundedIcon /> : <PlayArrowRoundedIcon />}
+            </Button>     
+            <Button sx={{flex:1}} variant="contained" onClick={handleStopButtonClick}>
+                <StopRoundedIcon/>
             </Button>
+            </Stack>
             <Stack flex={1}>
                 <Typography>Rate: {readerService.rate}</Typography>   
                 <Slider onChange={handleRateChange} step={.1} marks min={.5} max={2} defaultValue={readerService.defaultRate} valueLabelDisplay="auto" />
