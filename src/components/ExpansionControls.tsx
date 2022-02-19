@@ -1,6 +1,6 @@
 import { Checkbox, FormControlLabel, Stack } from '@mui/material'
 import React from 'react'
-import scripts from '../assets/scripts/scripts.json'
+import scripts from '../assets/scripts.json'
 import jsConvert from 'js-convert-case'
 import { useTextService } from '../Services/TextService'
 

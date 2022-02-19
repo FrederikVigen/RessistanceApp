@@ -4,6 +4,7 @@ import TextPresenter from './components/TextPresenter';
 import ReaderControls from './components/ReaderControls';
 import ExpansionControls from './components/ExpansionControls';
 import ReaderService from './Services/ReaderService';
+import LanguageControls from './components/LanguageControls';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <ReaderService>
             <ReaderControls />
           </ReaderService>
+          <LanguageControls/>
           <ExpansionControls />
         </Stack>
       </Box>

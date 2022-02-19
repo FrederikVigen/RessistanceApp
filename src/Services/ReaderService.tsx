@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useLanguageService } from "./LanguageService";
 
 export interface IReaderService {
     readText(strs: string[]): void
@@ -18,7 +19,9 @@ export interface IReaderService {
 export const ReaderserviceContext = createContext<IReaderService | undefined>(undefined);
 
 const ReaderService = ({ children }: any) => {
+    const languageService = useLanguageService()
     const synth = window.speechSynthesis
+    const defaultVoice = synth.getVoices().filter(v => v.lang == languageService.currentLanguage)[0]
     const defaultRate = 1
     const defaultLineBreak = 1
     const [rate, setRate] = useState(defaultRate)
@@ -32,6 +35,7 @@ const ReaderService = ({ children }: any) => {
             const utterances = strs.map(str => {
               const ut = new SpeechSynthesisUtterance(str)
               ut.rate = rate
+              ut.voice = defaultVoice
               return ut
             })
             setUtterances(utterances)
