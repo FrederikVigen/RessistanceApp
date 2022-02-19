@@ -53,7 +53,6 @@ const ReaderService = ({ children }: any) => {
                 }
             }
 
-            console.log(strs)
             synth.speak(utterances[0])
             setIsSpeaking(true)
             console.log("First utterrance started")
