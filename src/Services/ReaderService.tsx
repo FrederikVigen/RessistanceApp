@@ -29,7 +29,11 @@ const ReaderService = ({ children }: any) => {
 
     const readerService: IReaderService = {
         readText: (strs) => {
-            const utterances = strs.map(str => new SpeechSynthesisUtterance(str))
+            const utterances = strs.map(str => {
+              const ut = new SpeechSynthesisUtterance(str)
+              ut.rate = rate
+              return ut
+            })
             setUtterances(utterances)
 
             //Bind utterrances together to make them wait the linebreak time after each one another
