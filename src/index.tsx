@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material';
 import TextService from './Services/TextService';
+import LanguageService from './Services/LanguageService';
 
 
 //#e01e27 - Rød
@@ -26,9 +27,11 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <TextService>
-        <App />
-      </TextService>
+      <LanguageService>
+        <TextService>
+          <App />
+        </TextService>
+      </LanguageService>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

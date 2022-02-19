@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import scripts from "../assets/scripts/scripts.json"
+import scripts from "../assets/scripts.json"
 
 export interface ITextService {
     addExpansion(key: string): void
