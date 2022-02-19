@@ -1,4 +1,4 @@
-import { Box, Button, FormControlLabel, Slider, Stack, Typography } from '@mui/material'
+import { Button, Slider, Stack, Typography } from '@mui/material'
 import React from 'react'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
@@ -8,24 +8,12 @@ import { useTextService } from '../Services/TextService';
 
 const ReaderControls = () => {
     const readerService = useReaderService()
-    const textSerivice = useTextService()
+    const textService = useTextService()
 
-    const handlePlayButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if(readerService.isPaused) {
-            readerService.resumeSpeech()
-        } else {
-            readerService.readText(textSerivice.currentText)
-        }
-    }
-
-    const handlePauseButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        readerService.pauseSpeech()
-    }
-    
-    const handleStopButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        readerService.stopSpeech()
-    }
-
+    const handlePlayButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => 
+        (readerService.isPaused ? readerService.resumeSpeech() : readerService.readText(textService.currentText))
+    const handlePauseButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => readerService.pauseSpeech()
+    const handleStopButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => readerService.stopSpeech()
     const handleRateChange = (e : Event, value: number | number[], activeThumb: number) => readerService.setRate(value as number) 
     const handleLineBreak = (e : Event, value: number | number[], activeThumb: number) => readerService.setLineBreak(value as number) 
 
